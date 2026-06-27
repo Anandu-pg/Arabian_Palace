@@ -405,43 +405,228 @@
     }
 
     @media (max-width: 768px) {
-      .navbar {
-        padding: 18px 24px;
-        flex-wrap: wrap;
-        gap: 16px;
+      /* On mobile: hide full navbar, show fixed hamburger only */
+      .navbar { display: none !important; }
+      /* Fixed hamburger top-right */
+      .mobile-hamburger-fixed {
+        display: flex !important;
+        position: fixed;
+        top: 16px;
+        right: 16px;
+        z-index: 9998;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 44px;
+        height: 44px;
+        cursor: pointer;
+        background: rgba(0,0,0,0.25);
+        border: 1px solid rgba(255,255,255,0.4);
+        border-radius: 10px;
+        padding: 9px;
       }
-      .nav-links {
-        display: none;
+      .mobile-hamburger-fixed span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: #ffffff;
+        border-radius: 2px;
       }
+      /* Large hero logo on mobile */
+      .mobile-hero-logo {
+        display: flex !important;
+        justify-content: flex-start;
+        padding: 24px 0 10px;
+        width: 100%;
+        order: -2;
+        margin-left: -35px;
+      }
+      .mobile-hero-logo img {
+        height: 180px;
+        width: auto;
+        filter: brightness(0) invert(1);
+      }
+      /* Hamburger button */
+      .hamburger {
+        display: flex !important;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        width: 36px;
+        height: 36px;
+        cursor: pointer;
+        background: rgba(255,255,255,0.15);
+        border: 1px solid rgba(255,255,255,0.3);
+        border-radius: 8px;
+        padding: 7px;
+      }
+      .hamburger span {
+        display: block;
+        width: 100%;
+        height: 2px;
+        background: #ffffff;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+      }
+      /* Mobile nav drawer */
+      .mobile-nav-drawer {
+        display: block !important;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: var(--green-dark);
+        z-index: 9999;
+        padding: 20px 24px 30px;
+        transform: translateY(-110%);
+        transition: transform 0.35s ease;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      }
+      .mobile-nav-drawer.open {
+        transform: translateY(0);
+      }
+      .mobile-nav-drawer .drawer-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 28px;
+      }
+      .mobile-nav-drawer .drawer-logo {
+        color: #fff;
+        font-family: 'Rye', serif;
+        font-size: 18px;
+      }
+      .mobile-nav-drawer .close-btn {
+        width: 36px; height: 36px;
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 8px;
+        color: #fff;
+        font-size: 20px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .mobile-nav-drawer ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .mobile-nav-drawer ul li a {
+        display: block;
+        color: rgba(255,255,255,0.9);
+        text-decoration: none;
+        font-family: 'Inter', sans-serif;
+        font-size: 17px;
+        font-weight: 600;
+        padding: 14px 16px;
+        border-radius: 10px;
+        letter-spacing: 0.5px;
+        transition: background 0.2s;
+      }
+      .mobile-nav-drawer ul li a:hover {
+        background: rgba(255,255,255,0.1);
+      }
+
+      /* HERO mobile: logo top, then image, then text */
       .hero-body {
         flex-direction: column;
-        align-items: flex-start;
-        padding: 24px 24px 0;
-        min-height: calc(100vh - 80px);
+        align-items: center;
+        padding: 0 20px 40px;
+      }
+      .hero-right {
+        position: relative;
+        right: auto; top: auto;
+        transform: none;
+        width: 100%;
+        margin: 0 0 20px 0;
+        order: -1; /* image FIRST */
       }
       .hero-left {
         width: 100%;
-        padding-bottom: 16px;
+        text-align: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
         z-index: 10;
       }
-      .hero-heading { font-size: clamp(52px, 14vw, 80px); }
-      .hero-right {
-        position: relative;
-        right: auto;
-        top: auto;
-        transform: none;
-        width: 110%;
-        margin-left: -5%;
-        margin-top: -20px;
-      }
+      .hero-heading { font-size: clamp(42px, 12vw, 64px); }
+      .hero-btns { justify-content: center; flex-wrap: wrap; }
       .mandi-wrapper {
         animation: fadeIn 0.9s ease forwards 0.4s;
         opacity: 0;
       }
+
+      /* STORY mobile */
+      .story-container {
+        flex-direction: column !important;
+        text-align: center;
+      }
+      .story-left { max-width: 100%; align-items: center; display: flex; flex-direction: column; }
+      .story-right { display: none !important; }
+      .camel-img-mobile {
+        display: block !important;
+        width: 100%;
+        max-width: 450px;
+        height: auto;
+        margin: 20px auto 40px;
+        filter: drop-shadow(0 30px 50px rgba(0,0,0,0.25));
+        animation: camelFloat 5s ease-in-out infinite;
+      }
+
+      /* BANNER mobile */
+      .banner-delivery { display: none; }
     }
 
     @keyframes fadeIn {
       to { opacity: 1; transform: none; }
+    }
+
+    /* Mobile auto-rotate indicator dots */
+    .mobile-dots {
+      display: none;
+    }
+    @media (max-width: 768px) {
+      .mobile-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 16px;
+      }
+      .mobile-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.35);
+        transition: background 0.3s, transform 0.3s;
+      }
+      .mobile-dot.active {
+        background: #ffffff;
+        transform: scale(1.3);
+      }
+      /* Menu: mobile single card focused */
+      /* (Moved to bottom of CSS to fix specificity) */
+      /* Mobile Menu Arrows hidden */
+      .menu-slider-btn {
+        display: none !important;
+      }
+      .menu-prev { left: 5px; }
+      .menu-next { right: 5px; }
+      /* Reviews mobile: 2 cards stacked */
+      .reviews-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 16px !important;
+      }
+      /* Hide extra review cards on mobile initially */
+      .r-card { display: none !important; }
+      .r-card.mobile-visible { display: flex !important; }
+      /* Outlets: 1 card on mobile */
+      .o-card {
+        min-width: 100% !important;
+      }
     }
     /* ─── BANNER SECTION ─── */
     .banner-section {
@@ -647,6 +832,7 @@
       filter: drop-shadow(0 30px 50px rgba(0,0,0,0.25));
       animation: camelFloat 5s ease-in-out infinite;
     }
+    .camel-img-mobile { display: none; }
     @keyframes camelFloat {
       0%, 100% { transform: translateY(0px); }
       50%       { transform: translateY(-14px); }
@@ -655,8 +841,13 @@
       .story-container { flex-direction: column; }
       .story-left { max-width: 100%; text-align: center; display: flex; flex-direction: column; align-items: center; }
       .banner-delivery { display: none; }
-      .banner-logos { flex-wrap: wrap; justify-content: center; }
+      .banner-logos { flex-wrap: nowrap; justify-content: center; gap: 20px; }
+      .swiggy-wordmark, .zomato-wordmark { font-size: 20px; }
+      .logo-img { width: 80px; }
+      .nav-links { display: none; }
+      .hamburger { display: block !important; }
     }
+
   </style>
 </head>
 <body>
@@ -681,14 +872,45 @@
       </ul>
       <!-- CTA -->
       <a href="#" class="nav-order-btn">
-        Order Now <span class="arrow">→</span>
+        Order Now <span class="arrow">&rarr;</span>
       </a>
+      <!-- Hamburger (mobile only) -->
+      <button class="hamburger" id="hamburgerBtn" onclick="toggleMobileMenu()" aria-label="Open Menu" style="display:none;">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </nav>
+
+  <!-- Mobile Nav Drawer -->
+  <div class="mobile-nav-drawer" id="mobileDrawer" style="display:none;">
+    <div class="drawer-header">
+      <span class="drawer-logo">🏰 Arabian Palace</span>
+      <button class="close-btn" onclick="toggleMobileMenu()">✕</button>
+    </div>
+    <ul>
+      <li><a href="#home" onclick="toggleMobileMenu()">Home</a></li>
+      <li><a href="#story" onclick="toggleMobileMenu()">Our Story</a></li>
+      <li><a href="#menu" onclick="toggleMobileMenu()">Menu</a></li>
+      <li><a href="#reviews" onclick="toggleMobileMenu()">Reviews</a></li>
+      <li><a href="#contacts" onclick="toggleMobileMenu()">Contacts</a></li>
+      <li style="margin-top:12px;">
+        <a href="#" onclick="toggleMobileMenu()" style="background:#ffffff;color:var(--green);border-radius:50px;font-weight:800;text-align:center;padding:16px;display:block;">Order Now &rarr;</a>
+      </li>
+    </ul>
+  </div>
+
+<!-- Fixed Hamburger Button (mobile only) -->
+<button class="mobile-hamburger-fixed" id="mobileHamburgerFixed" onclick="toggleMobileMenu()" aria-label="Open Menu" style="display:none;">
+  <span></span><span></span><span></span>
+</button>
 
   <!-- ═══ HERO BODY ═══ -->
   <div class="hero-body">
 
+    <!-- Mobile logo (shown at top on mobile) -->
+    <div class="mobile-hero-logo" style="display:none;">
+      <img src="logo.png.png" alt="Arabian Palace Logo" />
+    </div>
     <!-- LEFT -->
     <div class="hero-left">
       <h1 class="hero-heading">
@@ -788,6 +1010,8 @@
         <div class="divider-line-white"></div>
       </div>
 
+      <img src="camel.png" alt="Arabian Camel" class="camel-img-mobile" loading="lazy" />
+
       <p class="story-text">
         At Arabian Palace, we bring the true essence of Middle Eastern culinary heritage to your table. Our journey began with a simple passion: to recreate the authentic flavors of Mandi, slow-cooked to perfection in traditional underground pits.
       </p>
@@ -827,6 +1051,7 @@
 
     <!-- ── Premium Carousel ── -->
     <div class="carousel-track-wrap">
+      <button class="menu-slider-btn menu-prev" onclick="scrollMenu(-1)" style="display:none;">‹</button>
       <div class="carousel-track" id="menuGrid">
 
         <!-- ══ MANDI SPECIALS ══ -->
@@ -917,6 +1142,16 @@
 
         <!-- ══ OTHER FAVORITES ══ -->
 
+        <!-- Card 7 -->
+        <div class="c-card" data-cat="other">
+          <div class="c-card-img" style="background-image:url('https://images.unsplash.com/photo-1541529086526-db283c563270?w=700&q=85&fit=crop')"></div>
+          <div class="c-card-body">
+            <h3 class="c-card-title">Hummus with Pita</h3>
+            <p class="c-card-desc">Creamy chickpea puree served with freshly baked soft pita bread.</p>
+            <div class="c-card-tags"><span class="c-pill">Classic</span></div>
+          </div>
+        </div>
+
         <!-- Card O1 -->
         <div class="c-card" data-cat="other">
           <div class="c-card-img" style="background-image:url('https://images.unsplash.com/photo-1559847844-5315695dadae?w=700&q=85&fit=crop')"></div>
@@ -958,7 +1193,11 @@
         </div>
 
       </div>
+      <button class="menu-slider-btn menu-next" onclick="scrollMenu(1)" style="display:none;">›</button>
     </div><!-- /carousel -->
+
+    <!-- Mobile dots for menu -->
+    <div class="mobile-dots" id="menuDots"></div>
 
   </div>
 </section>
@@ -1159,6 +1398,17 @@
       <button class="slider-btn next-btn" onclick="scrollOutlets(1)">›</button>
     </div>
 
+    <!-- Prominent Insta Banner -->
+    <div style="text-align: center; margin: 40px auto 50px; padding: 30px 20px; background: rgba(255,255,255,0.05); border-radius: 16px; max-width: 600px; border: 1px solid rgba(255,255,255,0.1);">
+      <h3 style="color: #fff; font-family: 'Inter', sans-serif; font-size: 22px; margin-bottom: 20px; font-weight: 600;">For daily updates and offers</h3>
+      <a href="https://instagram.com/club_shawaya" target="_blank" style="display: inline-flex; align-items: center; gap: 12px; color: #fff; text-decoration: none; font-size: 18px; font-weight: bold; background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); padding: 14px 32px; border-radius: 50px; box-shadow: 0 4px 15px rgba(225, 48, 108, 0.4); transition: transform 0.2s;">
+        <svg style="width:24px;height:24px;" viewBox="0 0 24 24" fill="currentColor">
+             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+        </svg>
+        Follow us on Instagram
+      </a>
+    </div>
+
     <!-- Contact Info Box -->
     <div class="contact-info-box">
       <div class="info-item">
@@ -1178,14 +1428,10 @@
       </div>
       <div class="info-divider"></div>
       <div class="info-item">
-        <div class="info-icon">
-           <svg style="width:20px;height:20px;" viewBox="0 0 24 24" fill="currentColor">
-             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
-           </svg>
-        </div>
+        <div class="info-icon">✉️</div>
         <div class="info-content">
-          <h4>INSTAGRAM / EMAIL</h4>
-          <p><a href="https://instagram.com/club_shawaya" style="color:#fff;text-decoration:none;">@club_shawaya</a> - Follow for daily updates<br><a href="mailto:info@arabianpalace.com" style="color:#fff;text-decoration:none;">info@arabianpalace.com</a></p>
+          <h4>EMAIL</h4>
+          <p><a href="mailto:info@arabianpalace.com" style="color:#fff;text-decoration:none;">info@arabianpalace.com</a></p>
         </div>
       </div>
     </div>
@@ -1389,12 +1635,34 @@
   .c-card.hidden { display: none; }
 
   @media (max-width: 768px) {
-    .carousel-track {
-      justify-content: flex-start;
-    }
-    .c-card { transform: scale(1); opacity: 1; filter: brightness(1); }
     .menu-section { padding: 60px 0 80px; }
-    .carousel-track-wrap { padding: 30px 20px 50px; }
+    
+    /* Menu: mobile single card focused */
+    .carousel-track-wrap {
+      padding: 40px 0 60px;
+      position: relative;
+    }
+    .c-card {
+      flex: 0 0 68% !important;
+      min-width: 68% !important;
+      height: 460px; /* slightly taller for premium feel */
+      border-radius: 24px;
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+      /* Spring animation for 3D depth */
+      transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                  opacity 0.6s ease,
+                  box-shadow 0.6s ease;
+      transform: scale(0.85);
+      opacity: 0.5;
+      z-index: 1;
+    }
+    .c-card.active-card {
+      transform: scale(1.05);
+      opacity: 1;
+      z-index: 2;
+      box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+    }
   }
 
   /* ── REVIEWS SECTION ── */
@@ -1833,6 +2101,33 @@
 </style>
 
 <script>
+  // Toggle mobile menu
+  function toggleMobileMenu() {
+    const drawer = document.getElementById('mobileDrawer');
+    drawer.classList.toggle('open');
+  }
+
+  // Show hamburger only on mobile
+  function handleResize() {
+    const hamburger = document.getElementById('hamburgerBtn');
+    const fixedHamburger = document.getElementById('mobileHamburgerFixed');
+    const drawer = document.getElementById('mobileDrawer');
+    const mobileLogo = document.querySelector('.mobile-hero-logo');
+    if (window.innerWidth <= 768) {
+      if (hamburger) hamburger.style.display = 'none';
+      if (fixedHamburger) fixedHamburger.style.display = 'flex';
+      if (drawer) drawer.style.display = 'block';
+      if (mobileLogo) mobileLogo.style.display = 'flex';
+    } else {
+      if (hamburger) hamburger.style.display = 'none';
+      if (fixedHamburger) fixedHamburger.style.display = 'none';
+      if (drawer) { drawer.style.display = 'none'; drawer.classList.remove('open'); }
+      if (mobileLogo) mobileLogo.style.display = 'none';
+    }
+  }
+  window.addEventListener('resize', handleResize);
+  handleResize();
+
   // Tab filter
   function filterMenu(cat, btn) {
     if (btn) {
@@ -1846,15 +2141,268 @@
         card.classList.add('hidden');
       }
     });
+    // Reset and build infinite loop
+    buildInfiniteCarousel();
+    setupMenuDots();
+  }
+
+  let isJumping = false;
+  let scrollTimeout = null;
+
+  function buildInfiniteCarousel() {
+    const track = document.getElementById('menuGrid');
+    if (!track) return;
+    
+    track.querySelectorAll('.c-card-clone').forEach(el => el.remove());
+    if (!isMobile()) return; // Desktop does not use infinite loop
+    
+    const realCards = Array.from(track.querySelectorAll('.c-card:not(.hidden):not(.c-card-clone)'));
+    if (realCards.length < 2) return;
+    
+    // Clone last 2 and prepend
+    for (let i = realCards.length - 2; i < realCards.length; i++) {
+        if(i < 0) continue;
+        const clone = realCards[i].cloneNode(true);
+        clone.classList.add('c-card-clone');
+        clone.dataset.cloneIndex = i;
+        track.insertBefore(clone, track.firstChild);
+    }
+    
+    // Clone first 2 and append
+    for (let i = 0; i < 2; i++) {
+        if(i >= realCards.length) continue;
+        const clone = realCards[i].cloneNode(true);
+        clone.classList.add('c-card-clone');
+        clone.dataset.cloneIndex = i;
+        track.appendChild(clone);
+    }
+    
+    setTimeout(() => {
+        isJumping = true;
+        const wrap = document.querySelector('.carousel-track-wrap');
+        wrap.style.scrollSnapType = 'none';
+        const firstReal = track.querySelector('.c-card:not(.hidden):not(.c-card-clone)');
+        wrap.scrollLeft = firstReal.offsetLeft - (wrap.offsetWidth / 2) + (firstReal.offsetWidth / 2);
+        
+        setTimeout(() => { 
+            wrap.style.scrollSnapType = 'x mandatory';
+            isJumping = false; 
+            updateActiveMenuCard(); 
+        }, 50);
+    }, 10);
+  }
+
+  // ═══ MOBILE AUTO-ROTATE LOGIC ═══
+  const isMobile = () => window.innerWidth <= 768;
+
+  // ── MENU auto-rotate (1 card) ──
+  let menuSlideIndex = 0;
+  let menuTimer = null;
+
+  function getVisibleMenuCards() {
+    // Only return real cards for logical purposes (like dots)
+    return Array.from(document.querySelectorAll('.c-card:not(.hidden):not(.c-card-clone)'));
+  }
+
+  function setupMenuDots() {
+    if (!isMobile()) return;
+    const dotsEl = document.getElementById('menuDots');
+    if (!dotsEl) return;
+    const cards = getVisibleMenuCards();
+    dotsEl.innerHTML = '';
+    cards.forEach((_, i) => {
+      const d = document.createElement('span');
+      d.className = 'mobile-dot' + (i === menuSlideIndex ? ' active' : '');
+      dotsEl.appendChild(d);
+    });
+  }
+
+  function updateActiveMenuCard() {
+    if (!isMobile() || isJumping) return;
+    const wrap = document.querySelector('.carousel-track-wrap');
+    const track = document.getElementById('menuGrid');
+    if (!wrap || !track) return;
+    
+    const allCards = Array.from(track.querySelectorAll('.c-card:not(.hidden)'));
+    if (!allCards.length) return;
+    
+    let minDistance = Infinity;
+    let centerCardIndex = 0;
+    const wrapCenter = wrap.scrollLeft + wrap.offsetWidth / 2;
+    
+    allCards.forEach((card, index) => {
+      const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+      const distance = Math.abs(wrapCenter - cardCenter);
+      if (distance < minDistance) {
+        minDistance = distance;
+        centerCardIndex = index;
+      }
+      card.classList.remove('active-card');
+    });
+    
+    const activeCard = allCards[centerCardIndex];
+    if (activeCard) {
+      activeCard.classList.add('active-card');
+      
+      const isClone = activeCard.classList.contains('c-card-clone');
+      const realIndex = isClone 
+          ? parseInt(activeCard.dataset.cloneIndex) 
+          : Array.from(track.querySelectorAll('.c-card:not(.hidden):not(.c-card-clone)')).indexOf(activeCard);
+          
+      menuSlideIndex = realIndex;
+      
+      // Update dots
+      const dots = document.querySelectorAll('#menuDots .mobile-dot');
+      dots.forEach((d, i) => d.classList.toggle('active', i === realIndex));
+    }
+  }
+
+  function checkInfiniteJump() {
+    const wrap = document.querySelector('.carousel-track-wrap');
+    const track = document.getElementById('menuGrid');
+    if (!wrap || !track) return;
+    
+    const activeCard = track.querySelector('.c-card.active-card');
+    if (activeCard && activeCard.classList.contains('c-card-clone')) {
+        isJumping = true;
+        wrap.style.scrollSnapType = 'none';
+        
+        const realIndex = parseInt(activeCard.dataset.cloneIndex);
+        const realCards = track.querySelectorAll('.c-card:not(.hidden):not(.c-card-clone)');
+        const correspondingRealCard = realCards[realIndex];
+        
+        wrap.scrollLeft = correspondingRealCard.offsetLeft - (wrap.offsetWidth / 2) + (correspondingRealCard.offsetWidth / 2);
+        
+        // Force layout
+        wrap.offsetHeight; 
+        
+        wrap.style.scrollSnapType = 'x mandatory';
+        setTimeout(() => { isJumping = false; updateActiveMenuCard(); }, 50);
+    }
+  }
+
+  function showMenuSlide(idx) {
+    if (isJumping) return;
+    const realCards = getVisibleMenuCards();
+    if (!realCards.length) return;
+    
+    // Instead of selecting real cards, we should just scroll to the immediate next physical card to keep loop smooth
+    const track = document.getElementById('menuGrid');
+    const allVisible = Array.from(track.querySelectorAll('.c-card:not(.hidden)'));
+    const activeIdx = allVisible.findIndex(c => c.classList.contains('active-card'));
+    
+    let targetCard = allVisible[activeIdx + 1];
+    
+    if (!targetCard) targetCard = allVisible[0]; // Fallback
+    
+    const wrap = document.querySelector('.carousel-track-wrap');
+    const scrollPos = targetCard.offsetLeft - (wrap.offsetWidth / 2) + (targetCard.offsetWidth / 2);
+    wrap.scrollTo({ left: scrollPos, behavior: 'smooth' });
+  }
+
+  function startMenuAutoRotate() {
+    clearInterval(menuTimer);
+    menuTimer = setInterval(() => showMenuSlide(menuSlideIndex + 1), 4000);
+  }
+
+  function scrollMenu(dir) {
+    if (!isMobile()) {
+        const wrap = document.querySelector('.carousel-track-wrap');
+        const firstCard = document.querySelector('.c-card:not(.hidden)');
+        if(wrap && firstCard) {
+            wrap.scrollBy({ left: dir * (firstCard.offsetWidth + 20), behavior: 'smooth' });
+        }
+        return;
+    }
+
+    clearInterval(menuTimer);
+    if (isJumping) return;
+    
+    const track = document.getElementById('menuGrid');
+    const allVisible = Array.from(track.querySelectorAll('.c-card:not(.hidden)'));
+    const activeIdx = allVisible.findIndex(c => c.classList.contains('active-card'));
+    
+    let targetCard = allVisible[activeIdx + dir];
+    if (!targetCard) return;
+    
+    const wrap = document.querySelector('.carousel-track-wrap');
+    const scrollPos = targetCard.offsetLeft - (wrap.offsetWidth / 2) + (targetCard.offsetWidth / 2);
+    wrap.scrollTo({ left: scrollPos, behavior: 'smooth' });
+    
+    startMenuAutoRotate();
+  }
+
+  // ── REVIEWS auto-rotate (show 2 at a time) ──
+  let reviewIndex = 0;
+  let reviewTimer = null;
+  const REVIEW_PAGE_SIZE = 2;
+
+  function showReviewPage(idx) {
+    if (!isMobile()) return;
+    const cards = Array.from(document.querySelectorAll('.r-card'));
+    if (!cards.length) return;
+    reviewIndex = (idx + cards.length) % cards.length;
+    cards.forEach(c => c.classList.remove('mobile-visible'));
+    // Show 2 consecutive cards
+    for (let i = 0; i < REVIEW_PAGE_SIZE; i++) {
+      const c = cards[(reviewIndex + i) % cards.length];
+      if (c) c.classList.add('mobile-visible');
+    }
+  }
+
+  function startReviewAutoRotate() {
+    clearInterval(reviewTimer);
+    if (!isMobile()) return;
+    reviewTimer = setInterval(() => showReviewPage(reviewIndex + REVIEW_PAGE_SIZE), 4000);
+  }
+
+  // ── OUTLETS auto-rotate (1 card) ──
+  let outletTimer = null;
+
+  function startOutletAutoRotate() {
+    clearInterval(outletTimer);
+    if (!isMobile()) return;
+    outletTimer = setInterval(() => {
+      const track = document.getElementById('outletsTrack');
+      if (!track) return;
+      const cardWidth = track.querySelector('.o-card').offsetWidth + 20;
+      // If reached end, scroll back to start
+      if (track.scrollLeft + track.offsetWidth >= track.scrollWidth - 10) {
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+      }
+    }, 3000);
   }
 
   // Run on page load
   document.addEventListener('DOMContentLoaded', () => {
     const activeTabBtn = document.querySelector('.menu-tab.active');
     filterMenu('mandi', activeTabBtn);
+    
+    // Setup carousel scroll listener
+    const wrap = document.querySelector('.carousel-track-wrap');
+    if (wrap) {
+      wrap.addEventListener('scroll', () => {
+          requestAnimationFrame(updateActiveMenuCard);
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(checkInfiniteJump, 150);
+      });
+    }
+
+    // Build the infinite loop initially
+    buildInfiniteCarousel();
+    setupMenuDots();
+    startMenuAutoRotate();
+
+    if (isMobile()) {
+      showReviewPage(0);
+      startReviewAutoRotate();
+      startOutletAutoRotate();
+    }
   });
 
-  // Outlets scroller
+  // Outlets scroller (arrow buttons)
   function scrollOutlets(dir) {
     const track = document.getElementById('outletsTrack');
     const cardWidth = track.querySelector('.o-card').offsetWidth + 20;
