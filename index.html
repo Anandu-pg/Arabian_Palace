@@ -582,11 +582,11 @@
       /* ── HERO fix: remove forced full-height on mobile ── */
       .hero { min-height: unset !important; }
 
-      /* HERO mobile: logo top, then image, then text */
+      /* HERO mobile */
       .hero-body {
         flex-direction: column;
         align-items: center;
-        padding: 0 20px 24px;
+        padding: 0 20px 32px;   /* 32px bottom = small gap before banner */
       }
       .hero-right {
         position: relative;
@@ -605,9 +605,7 @@
         z-index: 10;
       }
       .hero-heading { font-size: clamp(38px, 11vw, 60px); }
-      /* Hero sub spacing */
       .hero-sub { margin-bottom: 20px !important; }
-      /* Make both hero buttons same width */
       .hero-btns {
         justify-content: center;
         flex-wrap: wrap;
@@ -641,7 +639,7 @@
         text-align: left;
         gap: 0 !important;
       }
-      .story-section { padding: 44px 0px 44px; }
+      .story-section { padding: 40px 0 40px; }
       .story-left {
         max-width: 100%;
         width: 100%;
@@ -649,7 +647,7 @@
         display: flex;
         flex-direction: column;
         text-align: left;
-        padding: 0 20px;
+        padding: 0 16px;       /* tighter padding = more words per line */
         box-sizing: border-box;
       }
       .story-heading {
@@ -661,59 +659,66 @@
         width: 100% !important;
         max-width: 100% !important;
         padding: 0 !important;
+        margin: 0 0 16px 0 !important;
         line-height: 1.75;
         font-size: 15px;
       }
       .story-right { display: none !important; }
       .camel-img-mobile {
         display: block !important;
-        width: 100%;
-        max-width: 460px;
+        width: 95%;             /* slightly larger */
+        max-width: 500px;
         height: auto;
         margin: 4px auto 20px;
         filter: drop-shadow(0 20px 40px rgba(0,0,0,0.2));
         animation: camelFloat 5s ease-in-out infinite;
       }
 
-      /* BANNER mobile - compact, stacked Swiggy then Zomato */
+      /* BANNER mobile – perfect Swiggy/Zomato alignment */
       .banner-delivery { display: none; }
       .banner-section { padding: 12px 16px; }
-      .banner-box { padding: 20px 24px; border-radius: 14px; }
-      .banner-center { gap: 12px; width: 100%; }
+      .banner-box { padding: 18px 20px; border-radius: 14px; }
+      .banner-center { gap: 10px; width: 100%; align-items: center; }
       .banner-label {
         font-size: 11px !important;
         letter-spacing: 1px !important;
         white-space: nowrap;
+        text-align: center;
       }
       .banner-logos {
         flex-direction: column !important;
         gap: 0 !important;
-        align-items: stretch !important;
-        width: 100%;
-      }
-      .banner-logos > a {
-        display: flex !important;
-        justify-content: center;
-        padding: 10px 0;
-      }
-      .swiggy-wrap, .zomato-wrap {
-        display: flex !important;
-        justify-content: center !important;
         align-items: center !important;
         width: 100%;
-        gap: 12px;
-        padding: 0;
       }
+      /* Each link row same height */
+      .banner-logos > a {
+        display: flex !important;
+        justify-content: flex-start;
+        align-items: center;
+        width: 160px;           /* fixed width so both rows start at same x */
+        padding: 10px 0;
+        text-decoration: none;
+      }
+      /* Divider between rows */
       .banner-divider {
-        width: 80% !important;
+        width: 160px !important;
         height: 1px !important;
-        background: rgba(255,255,255,0.2);
-        margin: 0 auto;
-        align-self: center;
+        background: rgba(255,255,255,0.25);
+        margin: 0;
       }
+      /* Both wraps identical layout */
+      .swiggy-wrap, .zomato-wrap {
+        display: flex !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+        gap: 12px;
+        width: 160px;
+      }
+      .swiggy-logo-svg, .zomato-logo-svg { width: 32px !important; height: 32px !important; flex-shrink: 0; }
       .swiggy-wordmark { font-size: 20px !important; letter-spacing: 1px !important; }
       .zomato-wordmark { font-size: 22px !important; letter-spacing: -0.5px !important; }
-      .swiggy-logo-svg, .zomato-logo-svg { width: 32px !important; height: 32px !important; }
+
     }
 
     @keyframes fadeIn {
