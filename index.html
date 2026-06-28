@@ -488,7 +488,7 @@
         padding: 8px 0 4px;
         width: 100%;
         order: -2;
-        margin-left: 0;
+        margin-left: -16px;
       }
       .mobile-hero-logo img {
         height: 95px;
@@ -646,44 +646,10 @@
         justify-content: center;
       }
       .mandi-wrapper .mandi-img {
-        animation: none !important;
-        transform: none !important;
+        animation: camelFloat 5s ease-in-out infinite !important;
         filter: drop-shadow(0 20px 40px rgba(0,0,0,0.25)) !important;
         position: relative;
         z-index: 2;
-      }
-      /* Orbit ring */
-      .orbit-ring {
-        display: block !important;
-        position: absolute;
-        width: 260px;
-        height: 260px;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 1;
-        pointer-events: none;
-      }
-      .orbit-dot {
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        top: 50%;
-        left: 50%;
-        margin: -5px 0 0 -5px;
-        animation: orbitSpin 6s linear infinite;
-        animation-delay: calc(var(--i) * -1s);
-      }
-      .orbit-dot:nth-child(1) { background: rgba(255,255,255,0.9); width:10px; height:10px; }
-      .orbit-dot:nth-child(2) { background: rgba(255,220,100,0.85); width:7px; height:7px; }
-      .orbit-dot:nth-child(3) { background: rgba(255,255,255,0.6); width:6px; height:6px; }
-      .orbit-dot:nth-child(4) { background: rgba(200,255,200,0.8); width:9px; height:9px; }
-      .orbit-dot:nth-child(5) { background: rgba(255,255,255,0.5); width:5px; height:5px; }
-      .orbit-dot:nth-child(6) { background: rgba(255,200,100,0.7); width:8px; height:8px; }
-      @keyframes orbitSpin {
-        0%   { transform: rotate(0deg)   translateX(130px) rotate(0deg); }
-        100% { transform: rotate(360deg) translateX(130px) rotate(-360deg); }
       }
 
       /* STORY mobile */
@@ -1036,6 +1002,7 @@
     }
     .camel-img-mobile { display: none; }
     .orbit-ring { display: none; }
+    .mandi-spin-ring { display: none; }
     @keyframes camelFloat {
       0%, 100% { transform: translateY(0px); }
       50%       { transform: translateY(-14px); }
@@ -1185,16 +1152,6 @@
     <!-- RIGHT -->
     <div class="hero-right">
       <div class="mandi-wrapper" style="position:relative;">
-
-        <!-- Orbiting dots (mobile only) -->
-        <div class="orbit-ring">
-          <span class="orbit-dot" style="--i:0;"></span>
-          <span class="orbit-dot" style="--i:1;"></span>
-          <span class="orbit-dot" style="--i:2;"></span>
-          <span class="orbit-dot" style="--i:3;"></span>
-          <span class="orbit-dot" style="--i:4;"></span>
-          <span class="orbit-dot" style="--i:5;"></span>
-        </div>
 
         <!-- Mandi Image -->
         <picture>
