@@ -1826,8 +1826,8 @@
       justify-content: flex-start !important;
     }
     .c-card {
-      flex: 0 0 75% !important;
-      min-width: 75% !important;
+      flex: 0 0 72% !important;
+      min-width: 72% !important;
       height: 320px !important;
       border-radius: 20px;
       scroll-snap-align: none !important;
@@ -2532,15 +2532,29 @@
     currentTranslate = -(menuSlideIndex * cardWidth) + offset;
     prevTranslate = currentTranslate;
     
+    const allCards = Array.from(track.querySelectorAll('.c-card:not(.hidden)'));
+    
     if (animate) {
       track.style.transition = 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)';
     } else {
       track.style.transition = 'none';
+      // Suppress card scale animation to prevent flicker on jump
+      allCards.forEach(c => c.style.transition = 'none');
     }
     track.style.transform = `translateX(${currentTranslate}px)`;
     
-    const allCards = Array.from(track.querySelectorAll('.c-card:not(.hidden)'));
     allCards.forEach((c, i) => c.classList.toggle('active-card', i === menuSlideIndex));
+    
+    if (!animate) {
+      // Force immediate layout reflow so changes apply instantly
+      track.offsetHeight;
+      // Restore card CSS transitions safely on the next frame
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          allCards.forEach(c => c.style.transition = '');
+        });
+      });
+    }
     
     const dots = document.querySelectorAll('#menuDots .mobile-dot');
     const realCardsCount = getRealMenuCards().length;
