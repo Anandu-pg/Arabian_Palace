@@ -491,7 +491,7 @@
         margin-left: 0;
       }
       .mobile-hero-logo img {
-        height: 80px;
+        height: 95px;
         width: auto;
         filter: brightness(0) invert(1);
       }
@@ -649,13 +649,28 @@
         animation: camelFloat 5s ease-in-out infinite;
       }
 
-      /* BANNER mobile - fix overflow */
+      /* BANNER mobile - fix overflow, stack Swiggy/Zomato vertically */
       .banner-delivery { display: none; }
       .banner-section { padding: 16px; }
       .banner-box { padding: 20px 16px; border-radius: 12px; }
-      .banner-logos { flex-wrap: wrap; gap: 16px; justify-content: center; }
-      .swiggy-wordmark, .zomato-wordmark { font-size: 18px; }
-      .swiggy-logo-svg, .zomato-logo-svg { width: 28px; height: 28px; }
+      .banner-logos {
+        flex-direction: column !important;
+        gap: 14px !important;
+        align-items: center;
+        width: 100%;
+      }
+      .banner-divider {
+        width: 80% !important;
+        height: 1px !important;
+        background: rgba(255,255,255,0.25);
+        margin: 0;
+      }
+      .swiggy-wrap, .zomato-wrap {
+        justify-content: center;
+        width: 100%;
+      }
+      .swiggy-wordmark, .zomato-wordmark { font-size: 20px; }
+      .swiggy-logo-svg, .zomato-logo-svg { width: 30px; height: 30px; }
     }
 
     @keyframes fadeIn {
