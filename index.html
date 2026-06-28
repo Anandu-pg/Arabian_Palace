@@ -2305,7 +2305,12 @@
     .outlets-subtext { font-size: 14px; }
     .outlets-header { margin-bottom: 30px; }
     /* Outlet cards: full width on mobile */
-    .o-card { min-width: 100% !important; }
+    .o-card { 
+      min-width: 100% !important; 
+      flex: 0 0 100% !important;
+      max-width: 100% !important;
+      width: 100% !important;
+    }
     .slider-btn { display: none !important; }
 
     /* Insta banner mobile - stack vertically */
